@@ -13,6 +13,8 @@ const app = express();
 const PORT = process.env.PORT || 3000
 const MONGO_URL = process.env.MONGO_URL
 
+app.use(errorMiddleware);
+
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(express.raw());
@@ -22,16 +24,6 @@ app.use(express.raw());
 
 app.use('/api/products', productRoute);
 app.use('/api/users', userRoute);
-
-app.use(errorMiddleware);
-
-/*
-first API call
-
-app.get('/', (req, res) => {
-    res.status(200)send(`Hello Node API`)
-});
-*/
 
 
 // random test route
